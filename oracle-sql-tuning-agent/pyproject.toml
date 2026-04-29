@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oracle-sql-tuning-agent"
+version = "0.1.0"
+description = "Production-ready Oracle SQL Performance Tuning Agent for Oracle 19c+"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "oracledb>=2.0.0",
+  "PyYAML>=6.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+]
+
+[project.scripts]
+sqltune-agent = "sqltune_agent.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

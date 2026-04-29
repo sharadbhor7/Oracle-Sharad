@@ -1,0 +1,30 @@
+database:
+  user: "TUNE_AGENT"
+  password_env: "ORACLE_TUNE_AGENT_PASSWORD"
+  dsn: "dbhost.example.com:1521/ORCLPDB1"
+  mode: "thin"
+
+agent:
+  advisory_only: true
+  auto_apply_low_risk: false
+  max_sql: 10
+  ranking_metric: "combined" # avg_cpu_time, avg_elapsed_time, combined
+  source: "gv$sql" # gv$sql, v$sql, awr
+  awr_enabled: false
+  drop_tuning_task_after_completion: false
+  execution_window:
+    start: "00:00"
+    end: "23:59"
+  rollback_threshold:
+    elapsed_time_pct: 20
+    cpu_time_pct: 20
+    min_executions: 10
+
+notifications:
+  enabled: false
+  webhook_url_env: "SQLTUNE_WEBHOOK_URL"
+  email_to: []
+
+logging:
+  level: "INFO"
+  file: "sqltune-agent.log"
